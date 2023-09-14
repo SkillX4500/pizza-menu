@@ -49,7 +49,21 @@ const pizzaData = [
 function App() {
   return (
     <div>
-      <h1>Hello World !!!</h1>
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+
+function Header() {
+  return <h1>The React Pizzaria Co. Ltd.</h1>;
+}
+
+function Menu() {
+  return (
+    <div>
+      <h2>Our Menu:-</h2>
       <Pizza />
       <Pizza />
       <Pizza />
@@ -60,11 +74,17 @@ function App() {
 function Pizza() {
   return (
     <div>
-      <h2>Pizza Prosciutto</h2>
+      <h3>Pizza Prosciutto</h3>
       <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
       <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
     </div>
   );
+}
+
+function Footer() {
+  return <footer>{new Date().toLocaleTimeString()}. We Are Open !!!</footer>;
+
+  // return React.createElement("footer", null, "We are Open !");
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
