@@ -67,7 +67,7 @@ function Header() {
 }
 
 function Menu() {
-  const pizzas = [];
+  const pizzas = pizzaData;
   const havePizza = pizzas.length > 0;
 
   return (
@@ -105,16 +105,26 @@ function Footer() {
   const closingHour = 20;
   const isOpen = hour >= openingHour && hour <= closingHour;
 
+  // if (!isOpen) {
+  //   return <p>
+  //   Our store is available from {openingHour}:00 to {closingHour}:00.
+  // </p>
+  // }
+
   return (
     <footer className="footer">
-      <div className="order">
-        {isOpen && (
+      {isOpen ? (
+        <div className="order">
           <p>
             We are open till {closingHour}:00. Come visit us or order online !
           </p>
-        )}
-        <button className="btn">Order Now</button>
-      </div>
+          <button className="btn">Order Now</button>
+        </div>
+      ) : (
+        <p>
+          Our store is available from {openingHour}:00 to {closingHour}:00.
+        </p>
+      )}
     </footer>
   );
 
