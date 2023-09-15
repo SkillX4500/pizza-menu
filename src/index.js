@@ -61,29 +61,41 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      <h1>The React Pizzaria Co. Ltd.</h1>
+      <h1>React Pizzaria Ltd.</h1>
     </header>
   );
 }
 
 function Menu() {
+  const pizzas = [];
+  const havePizza = pizzas.length > 0;
+
   return (
     <main className="menu">
-      <h2>Our Menu:-</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <h2>Our Menu</h2>
+      {havePizza ? (
+        <ul className="pizzas">
+          {pizzaData.map(pizza => (
+            <Pizza key={pizza.name} {...pizza} />
+          ))}
+        </ul>
+      ) : (
+        <h1>We Sold Out! Come back later.</h1>
+      )}
     </main>
   );
 }
 
-function Pizza() {
+function Pizza(props) {
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h3>Pizza Prosciutto</h3>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
+    <li className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+    </li>
   );
 }
 
@@ -95,7 +107,14 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We Are Open !!!
+      <div className="order">
+        {isOpen && (
+          <p>
+            We are open till {closingHour}:00. Come visit us or order online !
+          </p>
+        )}
+        <button className="btn">Order Now</button>
+      </div>
     </footer>
   );
 
